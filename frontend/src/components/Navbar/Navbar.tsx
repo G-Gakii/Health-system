@@ -1,0 +1,58 @@
+import styles from "./Navbar.module.css";
+
+const Navbar = () => {
+  return (
+    <nav className={`navbar navbar-expand-lg   ${styles.navContainer}`}>
+      <div className="container-fluid ">
+        <a className="navbar-brand" href="#">
+          Health
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/create_program">
+                Program
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/register_client">
+                Register
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/enroll_program">
+                Enroll
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/registered_client">
+                Clients
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

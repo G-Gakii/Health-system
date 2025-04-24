@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import BaseUrl from "../../services/ApiInterceptor";
 import ClientInterface from "../../interfaces/ClientInterface";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const RegisteredClient = () => {
   const [clients, setClients] = useState<ClientInterface[]>([]);
@@ -34,6 +36,7 @@ const RegisteredClient = () => {
   };
   return (
     <>
+      <Navbar />
       <form className="d-flex" role="search">
         <input
           className="form-control me-2 p-3"
@@ -68,6 +71,7 @@ const RegisteredClient = () => {
           ))}
         </tbody>
       </table>
+      <Footer />
     </>
   );
 };

@@ -1,0 +1,11 @@
+@import "../../variables.css";
+
+.navContainer {
+  background-color: var(--DarkBlue);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+a {
+  color: var(--White) !important;
+  font-size: 1.2rem !important;
+}

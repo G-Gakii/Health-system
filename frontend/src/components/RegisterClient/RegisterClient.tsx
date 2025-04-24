@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import RegisterInterface from "../../interfaces/RegisterInterface";
 import axios from "axios";
 import BaseUrl from "../../services/ApiInterceptor";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const RegisterClient = () => {
   const navigate = useNavigate();
@@ -85,114 +87,121 @@ const RegisterClient = () => {
     return errors;
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <h1 className="text-capitalize text-center">Register new client</h1>
-      <div className="mb-3">
-        <label htmlFor="client_id" className="form-label">
-          Client ID
+    <>
+      <Navbar />
+      <form onSubmit={handleSubmit}>
+        <h1 className="text-capitalize text-center">Register new client</h1>
+        <div className="mb-3">
+          <label htmlFor="client_id" className="form-label">
+            Client ID
+          </label>
+          <input
+            type="text"
+            className="form-control p-3"
+            id="client_id"
+            name="client_id"
+            placeholder="e.g Jane Doe"
+            value={client.client_id}
+            onChange={handleChange}
+          />
+          {formError.client_id && (
+            <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="fullname" className="form-label">
+            Full Name
+          </label>
+          <input
+            type="text"
+            className="form-control p-3"
+            id="fullname"
+            name="fullName"
+            placeholder="e.g Jane Doe"
+            value={client.fullName}
+            onChange={handleChange}
+          />
+          {formError.fullName && (
+            <span className={`${styles.errorMsg}`}>{formError.fullName}</span>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="age" className="form-label">
+            Age
+          </label>
+          <input
+            type="number"
+            className="form-control p-3"
+            id="age"
+            name="age"
+            placeholder="e.g 30"
+            value={client.age}
+            onChange={handleChange}
+          />
+          {formError.age && (
+            <span className={`${styles.errorMsg}`}>{formError.age}</span>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="phone_number" className="form-label">
+            phoneNumber
+          </label>
+          <input
+            type="text"
+            className="form-control p-3"
+            id="phone_number"
+            name="phone_number"
+            placeholder="e.g +291111111111"
+            value={client.phone_number}
+            onChange={handleChange}
+          />
+          {formError.phone_number && (
+            <span className={`${styles.errorMsg}`}>
+              {" "}
+              {formError.phone_number}{" "}
+            </span>
+          )}
+        </div>
+        <label htmlFor="gender" className="form-label">
+          Gender
         </label>
-        <input
-          type="text"
-          className="form-control p-3"
-          id="client_id"
-          name="client_id"
-          placeholder="e.g Jane Doe"
-          value={client.client_id}
+        <select
+          className="form-select p-3"
+          aria-label="Default select "
           onChange={handleChange}
-        />
-        {formError.client_id && (
-          <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
-        )}
-      </div>
-      <div className="mb-3">
-        <label htmlFor="fullname" className="form-label">
-          Full Name
-        </label>
-        <input
-          type="text"
-          className="form-control p-3"
-          id="fullname"
-          name="fullName"
-          placeholder="e.g Jane Doe"
-          value={client.fullName}
-          onChange={handleChange}
-        />
-        {formError.fullName && (
-          <span className={`${styles.errorMsg}`}>{formError.fullName}</span>
-        )}
-      </div>
-      <div className="mb-3">
-        <label htmlFor="age" className="form-label">
-          Age
-        </label>
-        <input
-          type="number"
-          className="form-control p-3"
-          id="age"
-          name="age"
-          placeholder="e.g 30"
-          value={client.age}
-          onChange={handleChange}
-        />
-        {formError.age && (
-          <span className={`${styles.errorMsg}`}>{formError.age}</span>
-        )}
-      </div>
-      <div className="mb-3">
-        <label htmlFor="phone_number" className="form-label">
-          phoneNumber
-        </label>
-        <input
-          type="text"
-          className="form-control p-3"
-          id="phone_number"
-          name="phone_number"
-          placeholder="e.g +291111111111"
-          value={client.phone_number}
-          onChange={handleChange}
-        />
-        {formError.phone_number && (
-          <span className={`${styles.errorMsg}`}>
-            {" "}
-            {formError.phone_number}{" "}
-          </span>
-        )}
-      </div>
-      <label htmlFor="gender" className="form-label">
-        Gender
-      </label>
-      <select
-        className="form-select p-3"
-        aria-label="Default select "
-        onChange={handleChange}
-        name="gender"
-        value={client.gender}
-      >
-        <option value="" disabled>
-          Select gender
-        </option>
-        <option value="F">Female</option>
-        <option value="M">Male</option>
-        <option value="O">others</option>
-      </select>
-      {formError.gender && (
-        <span className={`${styles.errorMsg}`}>{formError.gender}</span>
-      )}
-      <div className="py-5 d-flex gap-5">
-        <button type="submit" className={`btn fs-5 p-3 ${styles.containerBtn}`}>
-          Register Client
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            navigate("/");
-          }}
-          className={`btn btn-light fs-4 p-3 ${styles.lightBtn}`}
+          name="gender"
+          value={client.gender}
         >
-          Cancel
-        </button>
-      </div>
-    </form>
+          <option value="" disabled>
+            Select gender
+          </option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+          <option value="O">others</option>
+        </select>
+        {formError.gender && (
+          <span className={`${styles.errorMsg}`}>{formError.gender}</span>
+        )}
+        <div className="py-5 d-flex gap-5">
+          <button
+            type="submit"
+            className={`btn fs-5 p-3 ${styles.containerBtn}`}
+          >
+            Register Client
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/");
+            }}
+            className={`btn btn-light fs-4 p-3 ${styles.lightBtn}`}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+      <Footer />
+    </>
   );
 };
 

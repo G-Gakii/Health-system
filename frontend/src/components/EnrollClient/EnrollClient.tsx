@@ -4,6 +4,8 @@ import { EnrollInterface } from "../../interfaces/RegisterInterface";
 import axios from "axios";
 import BaseUrl from "../../services/ApiInterceptor";
 import styles from "./EnrollClient.module.css";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const EnrollClient = () => {
   const navigate = useNavigate();
@@ -60,59 +62,66 @@ const EnrollClient = () => {
     return errors;
   };
   return (
-    <form className="" onSubmit={handleSubmit}>
-      <h1 className="text-capitalize text-center">Register new client</h1>
-      <div className="mb-3">
-        <label htmlFor="client_id" className="form-label">
-          Client ID
-        </label>
-        <input
-          type="text"
-          className="form-control p-3"
-          id="client_id"
-          name="client_id"
-          placeholder="e.g 123456"
-          value={program.client_id}
-          onChange={handleChange}
-        />
-        {formError.client_id && (
-          <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
-        )}
-      </div>
-      <div className="mb-3">
-        <label htmlFor="programName" className="form-label">
-          Program Name
-        </label>
-        <input
-          type="text"
-          className="form-control p-3"
-          id="programName"
-          placeholder="e.g TB"
-          name="program_name"
-          value={program.program_name}
-          onChange={handleChange}
-        />
-        {formError.program_name && (
-          <span className={`${styles.errorMsg}`}>
-            {" "}
-            {formError.program_name}{" "}
-          </span>
-        )}
-      </div>
-      <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between">
-        <button type="submit" className={`btn fs-5 p-3 ${styles.containerBtn}`}>
-          Enroll Client
-        </button>
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-          className={`btn btn-light fs-4 p-3 ${styles.lightBtn}`}
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
+    <>
+      <Navbar />
+      <form className="" onSubmit={handleSubmit}>
+        <h1 className="text-capitalize text-center">Enroll client</h1>
+        <div className="mb-3">
+          <label htmlFor="client_id" className="form-label">
+            Client ID
+          </label>
+          <input
+            type="text"
+            className="form-control p-3"
+            id="client_id"
+            name="client_id"
+            placeholder="e.g 123456"
+            value={program.client_id}
+            onChange={handleChange}
+          />
+          {formError.client_id && (
+            <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
+          )}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="programName" className="form-label">
+            Program Name
+          </label>
+          <input
+            type="text"
+            className="form-control p-3"
+            id="programName"
+            placeholder="e.g TB"
+            name="program_name"
+            value={program.program_name}
+            onChange={handleChange}
+          />
+          {formError.program_name && (
+            <span className={`${styles.errorMsg}`}>
+              {" "}
+              {formError.program_name}{" "}
+            </span>
+          )}
+        </div>
+        <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between">
+          <button
+            type="submit"
+            className={`btn fs-5 p-3 ${styles.containerBtn}`}
+          >
+            Enroll Client
+          </button>
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+            className={`btn btn-light fs-4 p-3 ${styles.lightBtn}`}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+      <Footer />
+    </>
   );
 };
 
