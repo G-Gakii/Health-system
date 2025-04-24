@@ -1,0 +1,31 @@
+@import "../../variables.css";
+
+.containerBtn {
+  background-color: var(--DarkBlue);
+  color: var(--White) !important;
+  width: 50%;
+}
+.containerBtn:hover {
+  background-color: var(--LightBlue);
+  color: var(--White) !important;
+  transition: 2s;
+  width: 50%;
+}
+.lightBtn {
+  font-weight: bold;
+  width: 50%;
+}
+
+.errormsg {
+  color: red !important;
+}
+
+@media screen and (max-width: 600px) {
+  .containerBtn {
+    width: 100%;
+  }
+  .lightBtn {
+    font-weight: bold;
+    width: 100%;
+  }
+}

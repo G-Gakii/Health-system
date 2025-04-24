@@ -1,0 +1,9 @@
+@import "../../variables.css";
+
+* {
+  color: var(--DarkBlue) !important;
+}
+.containerBtn {
+  background-color: var(--DarkBlue);
+  color: var(--White) !important;
+}
