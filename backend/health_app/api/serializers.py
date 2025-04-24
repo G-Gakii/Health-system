@@ -17,9 +17,11 @@ class ClientSerializer(serializers.ModelSerializer):
         
         
 class EnrollmentSerializer(serializers.ModelSerializer):
-    # pass program name rather than id
+       # These fields are used for input only, not saved directly to the Enrollment model
      program_name=serializers.CharField(write_only=True)
      client_id = serializers.CharField(write_only=True)
+     
+      # These are for readable output
      client = serializers.StringRelatedField(read_only=True)
      program = serializers.StringRelatedField(read_only=True)
 
@@ -28,7 +30,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         fields=["id" ,'client_id', 'program_name', 'enrollment_date',
             'client', 'program']
         
-        
+        #check if client is already registered for the program
      def validate(self,data):
         client =Client.objects.filter(client_id=data['client_id']).first()
         program=HealthProgram.objects.filter(name__iexact=data['program_name']).first()
