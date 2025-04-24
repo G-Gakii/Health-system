@@ -53,7 +53,14 @@ const Dashboard = () => {
             >
               Create New Program
             </button>
-            <button className="btn btn-light p-3 fs-5">Register client</button>
+            <button
+              onClick={() => {
+                navigate("/register_client");
+              }}
+              className="btn btn-light p-3 fs-5"
+            >
+              Register client
+            </button>
           </div>
         </div>
       </div>
