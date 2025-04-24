@@ -19,6 +19,11 @@ class HealthProgram(models.Model):
     def __str__(self):
         return self.name
     
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()  # Convert to lowercase before saving
+        super().save(*args, **kwargs)
+
+    
     
     
     
@@ -40,6 +45,10 @@ class Enrollment(models.Model):
     client=models.ForeignKey(Client,on_delete=models.CASCADE)
     program=models.ForeignKey(HealthProgram,on_delete=models.CASCADE)
     enrollment_date=models.DateTimeField(auto_now_add=True)
+    updated_date=models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together=("client","program")
     
     
     def __str__(self):
