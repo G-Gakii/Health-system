@@ -42,7 +42,7 @@ class Client(models.Model):
     
 class Enrollment(models.Model):
     id=models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
-    client=models.ForeignKey(Client,on_delete=models.CASCADE)
+    client=models.ForeignKey(Client,on_delete=models.CASCADE,related_name="programs")
     program=models.ForeignKey(HealthProgram,on_delete=models.CASCADE)
     enrollment_date=models.DateTimeField(auto_now_add=True)
     updated_date=models.DateTimeField(auto_now=True)

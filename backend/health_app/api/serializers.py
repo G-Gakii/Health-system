@@ -9,10 +9,7 @@ class HealthProgramSerializer(serializers.ModelSerializer):
         fields='__all__'
         
         
-class ClientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Client
-        fields='__all__'
+
         
         
         
@@ -36,8 +33,9 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         program=HealthProgram.objects.filter(name__iexact=data['program_name']).first()
         
         if client and program:
-            if Enrollment.objects.filter(client=client,program=program).exists():
-                raise serializers.ValidationError("client is already enrolled in this program")
+                existing_enrollment =Enrollment.objects.filter(client=client,program=program).exists()
+                if existing_enrollment and not self.instance:
+                    raise serializers.ValidationError("client is already enrolled in this program")
             
         return data
         
@@ -57,3 +55,10 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         instance.program = program
         instance.save()
         return instance
+    
+class ClientSerializer(serializers.ModelSerializer):
+      # Nested serializer for enrolled programs
+    programs=EnrollmentSerializer(many=True,read_only=True)
+    class Meta:
+        model=Client
+        fields= ['client_id', 'fullName', 'age', 'phone_number', 'gender', 'registration_date', 'updated_at', 'programs']
