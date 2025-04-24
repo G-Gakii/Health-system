@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddProgram from "./components/AddProgram/AddProgram";
 import RegisterClient from "./components/RegisterClient/RegisterClient";
 import EnrollClient from "./components/EnrollClient/EnrollClient";
+import RegisteredClient from "./components/RegisteredClients/RegisteredClient";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/create_program" element={<AddProgram />} />
         <Route path="/register_client" element={<RegisterClient />} />
         <Route path="/enroll_program" element={<EnrollClient />} />
+        <Route path="/registered_client" element={<RegisteredClient />} />
       </Routes>
     </BrowserRouter>
   );
