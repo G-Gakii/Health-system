@@ -1,13 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BaseUrl from "../../services/ApiInterceptor";
 import ClientInterface from "../../interfaces/ClientInterface";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import { useClientContext } from "../../context/ClientContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RegisteredClient = () => {
   const [clients, setClients] = useState<ClientInterface[]>([]);
   const [searchValue, setSearchValue] = useState("");
+  const { setSelectedClientId } = useClientContext();
+  const navigate = useNavigate();
 
   // get all clients
   const listClients = async () => {
@@ -65,7 +69,15 @@ const RegisteredClient = () => {
               <td> {client.fullName} </td>
               <td> {client.age} </td>
               <td>
-                <button className="btn btn-light p-3 fs-5">View</button>
+                <button
+                  onClick={() => {
+                    setSelectedClientId(client.client_id);
+                    navigate("/client");
+                  }}
+                  className="btn btn-light p-3 fs-5"
+                >
+                  View
+                </button>
               </td>
             </tr>
           ))}

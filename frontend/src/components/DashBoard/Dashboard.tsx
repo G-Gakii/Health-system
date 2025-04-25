@@ -35,11 +35,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     totalPrograms();
-  }, [programsTotal]);
-
-  useEffect(() => {
     totalClientFn();
-  }, [totalClient]);
+  }, []);
   return (
     <>
       <Navbar />

@@ -37,7 +37,7 @@ const AddProgram = () => {
     }
   };
   const validate = (program: any) => {
-    const errors = { name: "" };
+    const errors: any = {};
     if (!program.name) {
       errors.name = "Program name required";
     }

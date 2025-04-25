@@ -5,6 +5,8 @@ import AddProgram from "./components/AddProgram/AddProgram";
 import RegisterClient from "./components/RegisterClient/RegisterClient";
 import EnrollClient from "./components/EnrollClient/EnrollClient";
 import RegisteredClient from "./components/RegisteredClients/RegisteredClient";
+import { ClientProvider } from "./context/ClientContext";
+import ClientProfile from "./components/clientProfile/ClientProfile";
 
 const App = () => {
   return (
@@ -14,7 +16,22 @@ const App = () => {
         <Route path="/create_program" element={<AddProgram />} />
         <Route path="/register_client" element={<RegisterClient />} />
         <Route path="/enroll_program" element={<EnrollClient />} />
-        <Route path="/registered_client" element={<RegisteredClient />} />
+        <Route
+          path="/registered_client"
+          element={
+            <ClientProvider>
+              <RegisteredClient />
+            </ClientProvider>
+          }
+        />
+        <Route
+          path="/client"
+          element={
+            <ClientProvider>
+              <ClientProfile />
+            </ClientProvider>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
