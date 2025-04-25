@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EnrollInterface } from "../../interfaces/RegisterInterface";
 import axios from "axios";
@@ -13,11 +13,33 @@ const EnrollClient = () => {
     program_name: "",
     client_id: "",
   });
+  const [allPrograms, SetallPrograms] = useState<string[]>([]);
   const [formError, SetFormErrors] = useState<EnrollInterface>({
     program_name: "",
     client_id: "",
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  // get all available programs
+  useEffect(() => {
+    const fetchAllPrograms = async () => {
+      try {
+        const response: any = await axios.get(`${BaseUrl}program/`);
+
+        const programs: string[] = [];
+        for (let res of response.data) {
+          programs.push(res.name);
+        }
+        SetallPrograms(programs);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllPrograms();
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setProgram((prev) => ({ ...prev, [name]: value }));
   };
@@ -51,6 +73,18 @@ const EnrollClient = () => {
       }
     }
   };
+
+  // remove error when user focus on input field
+  const handleFocus = (
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    SetFormErrors((prev) => {
+      let updatedError: any = { ...prev };
+      delete updatedError[name];
+      return updatedError;
+    });
+  };
   const validate = (program: EnrollInterface) => {
     const errors: any = {};
     if (!program.program_name) {
@@ -80,6 +114,7 @@ const EnrollClient = () => {
             placeholder="e.g 123456"
             value={program.client_id}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           {formError.client_id && (
             <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
@@ -89,15 +124,24 @@ const EnrollClient = () => {
           <label htmlFor="programName" className="form-label">
             Program Name
           </label>
-          <input
-            type="text"
-            className="form-control p-3"
+          <select
+            className="form-select"
+            aria-label="program name"
             id="programName"
-            placeholder="e.g TB"
             name="program_name"
             value={program.program_name}
             onChange={handleChange}
-          />
+            onFocus={handleFocus}
+          >
+            <option selected>Select program</option>
+            {allPrograms.map((program, index) => (
+              <option key={index} value={program}>
+                {" "}
+                {program}{" "}
+              </option>
+            ))}
+          </select>
+
           {formError.program_name && (
             <span className={`${styles.errorMsg}`}>
               {" "}

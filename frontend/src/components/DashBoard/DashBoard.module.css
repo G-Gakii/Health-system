@@ -7,3 +7,6 @@
   background-color: var(--DarkBlue);
   color: var(--White) !important;
 }
+.containerBtn:hover {
+  background-color: var(--LightBlue);
+}

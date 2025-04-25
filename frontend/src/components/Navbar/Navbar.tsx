@@ -4,9 +4,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar navbar-expand-lg   ${styles.navContainer}`}>
       <div className="container-fluid ">
-        <a className="navbar-brand" href="#">
-          Health
-        </a>
+        <h1 className="navbar-brand fs-1 text-light">Health</h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -19,7 +17,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse gap-5 justify-content-end"
           id="navbarNav"
         >
           <ul className="navbar-nav">
