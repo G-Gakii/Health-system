@@ -29,13 +29,23 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         
         #check if client is already registered for the program
      def validate(self,data):
+        
         client =Client.objects.filter(client_id=data['client_id']).first()
+        
+        
         program=HealthProgram.objects.filter(name__iexact=data['program_name']).first()
         
-        if client and program:
-                existing_enrollment =Enrollment.objects.filter(client=client,program=program).exists()
-                if existing_enrollment and not self.instance:
-                    raise serializers.ValidationError("client is already enrolled in this program")
+        if not client:
+            raise serializers.ValidationError({"client_id": "Client with given ID does not exist."})
+        
+        if not program:
+            raise serializers.ValidationError({"program_name": "Health program does not exist."})
+
+        
+       
+        existing_enrollment =Enrollment.objects.filter(client=client,program=program).exists()
+        if existing_enrollment and not self.instance:
+             raise serializers.ValidationError("client is already enrolled in this program")
             
         return data
         
