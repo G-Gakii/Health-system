@@ -53,6 +53,7 @@ const RegisteredClient = () => {
         />
       </form>
       <h1 className="text-center py-3">Registered Clients</h1>
+
       <table className="table">
         <thead>
           <tr>
@@ -63,24 +64,28 @@ const RegisteredClient = () => {
           </tr>
         </thead>
         <tbody>
-          {clients.map((client) => (
-            <tr key={client.client_id}>
-              <th scope="row"> {client.client_id} </th>
-              <td> {client.fullName} </td>
-              <td> {client.age} </td>
-              <td>
-                <button
-                  onClick={() => {
-                    setSelectedClientId(client.client_id);
-                    navigate("/client");
-                  }}
-                  className="btn btn-light p-3 fs-5"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
+          {clients.length < 1 ? (
+            <tr>No client registered yet</tr>
+          ) : (
+            clients.map((client) => (
+              <tr key={client.client_id}>
+                <th scope="row"> {client.client_id} </th>
+                <td> {client.fullName} </td>
+                <td> {client.age} </td>
+                <td>
+                  <button
+                    onClick={() => {
+                      setSelectedClientId(client.client_id);
+                      navigate("/client");
+                    }}
+                    className="btn btn-light p-3 fs-5"
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
       <Footer />

@@ -65,7 +65,9 @@ const EnrollClient = () => {
     <>
       <Navbar />
       <form className="" onSubmit={handleSubmit}>
-        <h1 className="text-capitalize text-center">Enroll client</h1>
+        <h1 className="text-capitalize text-center">
+          Enroll client for a program
+        </h1>
         <div className="mb-3">
           <label htmlFor="client_id" className="form-label">
             Client ID
