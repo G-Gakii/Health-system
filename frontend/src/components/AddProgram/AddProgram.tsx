@@ -49,10 +49,12 @@ const AddProgram = () => {
   return (
     <>
       <Navbar />
-      <form className="" onSubmit={handleSubmit}>
-        <h1 className="fs-1 text-capitalize">Create new program</h1>
+      <form className={`${styles.form}`} onSubmit={handleSubmit}>
+        <h1 className="fs-1 text-capitalize text-center p-3">
+          Create new program
+        </h1>
         <div className="mb-3">
-          <label htmlFor="programName" className="form-label">
+          <label htmlFor="programName" className="form-label fs-5">
             Program Name
           </label>
           <input
@@ -76,7 +78,7 @@ const AddProgram = () => {
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
+          <label htmlFor="description" className="form-label fs-5">
             Description
           </label>
           <textarea
@@ -89,7 +91,7 @@ const AddProgram = () => {
           ></textarea>
           <p>(Optional)</p>
         </div>
-        <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between">
+        <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between py-5">
           <button
             type="submit"
             className={`btn fs-5 p-3 ${styles.containerBtn}`}
@@ -106,7 +108,6 @@ const AddProgram = () => {
           </button>
         </div>
       </form>
-      <Footer />
     </>
   );
 };

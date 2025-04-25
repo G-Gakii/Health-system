@@ -1,0 +1,13 @@
+@import "../../variables.css";
+
+.div__anchor {
+  background-color: var(--DarkBlue) !important;
+  padding: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.div__anchor:hover {
+  color: var(--LightBlue) !important;
+  text-decoration: underline !important;
+  transition: 1s !important;
+}

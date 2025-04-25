@@ -1,4 +1,4 @@
-interface ProgramsInterface {
+export interface ProgramsInterface {
   id: string;
   enrollment_date: string;
   program: string;

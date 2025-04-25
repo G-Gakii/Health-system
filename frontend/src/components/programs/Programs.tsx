@@ -1,0 +1,68 @@
+import { useEffect, useState } from "react";
+import Navbar from "../Navbar/Navbar";
+
+import axios, { AxiosResponse } from "axios";
+import BaseUrl from "../../services/ApiInterceptor";
+import ProgramInterface from "../../interfaces/ProgramInterface";
+import styles from "./Program.module.css";
+
+const Programs = () => {
+  const [programs, setPrograms] = useState<ProgramInterface[]>([]);
+  useEffect(() => {
+    async function fetchPrograms() {
+      try {
+        const res: AxiosResponse<ProgramInterface[]> = await axios.get(
+          `${BaseUrl}program/`
+        );
+        setPrograms(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchPrograms();
+  });
+  return (
+    <div className="">
+      <Navbar />
+      <a className={`${styles.div__anchor} m-5`} href="/create_program">
+        Create Program
+      </a>
+      <table className="table m-5">
+        <thead>
+          <tr className="fs-3">
+            <th scope="col">Program Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody className="fs-5 text-capitalize">
+          {programs.length < 1 ? (
+            <tr>No registered Program</tr>
+          ) : (
+            programs.map((program) => (
+              <tr key={program.id}>
+                <td> {program.name}</td>
+                <td>
+                  {!program.description ? (
+                    <span className="text-primary">No description</span>
+                  ) : (
+                    program.description
+                  )}
+                </td>
+                <td>
+                  {" "}
+                  <button className="btn text-capitalize fs-5">
+                    {" "}
+                    view Enrolled Clients
+                  </button>{" "}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default Programs;

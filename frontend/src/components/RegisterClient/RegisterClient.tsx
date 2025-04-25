@@ -216,7 +216,6 @@ const RegisterClient = () => {
           </button>
         </div>
       </form>
-      <Footer />
     </>
   );
 };
