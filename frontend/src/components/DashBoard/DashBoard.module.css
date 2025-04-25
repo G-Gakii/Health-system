@@ -3,6 +3,9 @@
 * {
   color: var(--DarkBlue) !important;
 }
+.container {
+  max-width: 900px;
+}
 .containerBtn {
   background-color: var(--DarkBlue);
   color: var(--White) !important;

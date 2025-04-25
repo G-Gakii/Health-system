@@ -41,7 +41,7 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className={`container ${styles.container}`}>
-        <div className="card mb-5">
+        <div className="card mb-5 p-3">
           <div className="card-body">
             <h1 className="card-title fs-3">Quick Actions</h1>
 
@@ -65,12 +65,12 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card p-3">
           <div className="card-body">
             <h2 className="card-title fs-4">Overview</h2>
             <div className="d-flex justify-content-between">
-              <div className="card">
-                <div className="card-body text-center">
+              <div className="card p-3">
+                <div className="card-body text-center ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
@@ -84,7 +84,7 @@ const Dashboard = () => {
                   <p className="fs-4">Active Programs</p>
                 </div>
               </div>
-              <div className="card">
+              <div className="card p-3">
                 <div className="card-body text-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ const Dashboard = () => {
                   <p className="fs-4">Registered clients</p>
                 </div>
               </div>
-              <div className="card">
+              <div className="card p-3">
                 <div className="card-body text-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

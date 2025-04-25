@@ -1,5 +1,8 @@
 @import "../../variables.css";
-
+form {
+  max-width: 800px;
+  margin: 1rem auto;
+}
 .containerBtn {
   background-color: var(--DarkBlue);
   color: var(--White) !important;

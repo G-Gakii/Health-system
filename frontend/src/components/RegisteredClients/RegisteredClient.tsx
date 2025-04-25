@@ -41,7 +41,7 @@ const RegisteredClient = () => {
   return (
     <>
       <Navbar />
-      <form className="d-flex" role="search">
+      <form className="d-flex " role="search">
         <input
           className="form-control me-2 p-3"
           type="search"
@@ -54,7 +54,7 @@ const RegisteredClient = () => {
       </form>
       <h1 className="text-center py-3">Registered Clients</h1>
 
-      <table className="table">
+      <table className="table m-5">
         <thead>
           <tr>
             <th scope="col">Client ID</th>
@@ -78,7 +78,7 @@ const RegisteredClient = () => {
                       setSelectedClientId(client.client_id);
                       navigate("/client");
                     }}
-                    className="btn btn-light p-3 fs-5"
+                    className="btn btn-light p-3 fs-5 px-5"
                   >
                     View
                   </button>
@@ -88,7 +88,6 @@ const RegisteredClient = () => {
           )}
         </tbody>
       </table>
-      <Footer />
     </>
   );
 };

@@ -99,16 +99,16 @@ const EnrollClient = () => {
     <>
       <Navbar />
       <form className="" onSubmit={handleSubmit}>
-        <h1 className="text-capitalize text-center">
+        <h1 className="text-capitalize text-center mb-5">
           Enroll client for a program
         </h1>
-        <div className="mb-3">
+        <div className="mb-3 fs-5">
           <label htmlFor="client_id" className="form-label">
             Client ID
           </label>
           <input
             type="text"
-            className="form-control p-3"
+            className="form-control p-3 fs-5"
             id="client_id"
             name="client_id"
             placeholder="e.g 123456"
@@ -120,12 +120,12 @@ const EnrollClient = () => {
             <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
           )}
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-5">
           <label htmlFor="programName" className="form-label">
             Program Name
           </label>
           <select
-            className="form-select"
+            className="form-select p-3 fs-5"
             aria-label="program name"
             id="programName"
             name="program_name"
@@ -149,7 +149,7 @@ const EnrollClient = () => {
             </span>
           )}
         </div>
-        <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between">
+        <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between my-5">
           <button
             type="submit"
             className={`btn fs-5 p-3 ${styles.containerBtn}`}
@@ -166,7 +166,6 @@ const EnrollClient = () => {
           </button>
         </div>
       </form>
-      <Footer />
     </>
   );
 };

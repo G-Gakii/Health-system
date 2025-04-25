@@ -5,7 +5,6 @@ import RegisterInterface from "../../interfaces/RegisterInterface";
 import axios from "axios";
 import BaseUrl from "../../services/ApiInterceptor";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
 
 const RegisterClient = () => {
   const navigate = useNavigate();
@@ -100,10 +99,10 @@ const RegisterClient = () => {
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={`${styles.form}`}>
         <h1 className="text-capitalize text-center">Register new client</h1>
-        <div className="mb-3">
-          <label htmlFor="client_id" className="form-label">
+        <div className="mb-3 fs-4">
+          <label htmlFor="client_id" className="form-label ">
             Client ID
           </label>
           <input
@@ -120,7 +119,7 @@ const RegisterClient = () => {
             <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
           )}
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-5">
           <label htmlFor="fullname" className="form-label">
             Full Name
           </label>
@@ -138,7 +137,7 @@ const RegisterClient = () => {
             <span className={`${styles.errorMsg}`}>{formError.fullName}</span>
           )}
         </div>
-        <div className="mb-3">
+        <div className="mb-3 fs-5">
           <label htmlFor="age" className="form-label">
             Age
           </label>
@@ -157,8 +156,11 @@ const RegisterClient = () => {
           )}
         </div>
         <div className="mb-3">
-          <label htmlFor="phone_number" className="form-label">
-            phoneNumber
+          <label
+            htmlFor="phone_number"
+            className="form-label fs-5 text-capitalize"
+          >
+            phone number
           </label>
           <input
             type="text"
@@ -177,7 +179,7 @@ const RegisterClient = () => {
             </span>
           )}
         </div>
-        <label htmlFor="gender" className="form-label">
+        <label htmlFor="gender" className="form-label fs-5">
           Gender
         </label>
         <select
