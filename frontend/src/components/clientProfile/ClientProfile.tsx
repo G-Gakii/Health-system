@@ -35,6 +35,7 @@ const ClientProfile = () => {
     }
     fetchClient();
   }, []);
+ 
 
   return (
     <div>

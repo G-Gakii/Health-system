@@ -43,7 +43,7 @@ const Dashboard = () => {
       <div className={`container ${styles.container}`}>
         <div className="card mb-5">
           <div className="card-body">
-            <h5 className="card-title fs-3">Quick Actions</h5>
+            <h1 className="card-title fs-3">Quick Actions</h1>
 
             <div className="d-flex gap-3">
               <button
@@ -67,7 +67,7 @@ const Dashboard = () => {
         </div>
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Overview</h5>
+            <h2 className="card-title fs-4">Overview</h2>
             <div className="d-flex justify-content-between">
               <div className="card">
                 <div className="card-body text-center">
@@ -121,7 +121,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
