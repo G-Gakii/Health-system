@@ -14,6 +14,7 @@ const AddProgram = () => {
   const [program, setProgram] = useState({ name: "", description: "" });
   const [formErrors, SetFormErrors] = useState<formErrorType>({});
 
+  // Function to handle changes in form inputs (e.g., <input> and <selecter>).
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -36,6 +37,8 @@ const AddProgram = () => {
       console.log(error);
     }
   };
+
+  // validate form input
   const validate = (program: any) => {
     const errors: any = {};
     if (!program.name) {

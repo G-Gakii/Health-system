@@ -82,9 +82,20 @@ const RegisterClient = () => {
       errors.gender = "Gender required";
     }
     if (!client.phone_number) {
-      errors.phoneNumber = "phone number required";
+      errors.phone_number = "phone number required";
     }
     return errors;
+  };
+  // remove error when user focus on input field
+  const handleFocus = (
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormError((prev) => {
+      let updatedError: any = { ...prev };
+      delete updatedError[name];
+      return updatedError;
+    });
   };
   return (
     <>
@@ -103,6 +114,7 @@ const RegisterClient = () => {
             placeholder="e.g Jane Doe"
             value={client.client_id}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           {formError.client_id && (
             <span className={`${styles.errorMsg}`}>{formError.client_id}</span>
@@ -120,6 +132,7 @@ const RegisterClient = () => {
             placeholder="e.g Jane Doe"
             value={client.fullName}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           {formError.fullName && (
             <span className={`${styles.errorMsg}`}>{formError.fullName}</span>
@@ -137,6 +150,7 @@ const RegisterClient = () => {
             placeholder="e.g 30"
             value={client.age}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           {formError.age && (
             <span className={`${styles.errorMsg}`}>{formError.age}</span>
@@ -154,6 +168,7 @@ const RegisterClient = () => {
             placeholder="e.g +291111111111"
             value={client.phone_number}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           {formError.phone_number && (
             <span className={`${styles.errorMsg}`}>
@@ -171,6 +186,7 @@ const RegisterClient = () => {
           onChange={handleChange}
           name="gender"
           value={client.gender}
+          onFocus={handleFocus}
         >
           <option value="" disabled>
             Select gender
