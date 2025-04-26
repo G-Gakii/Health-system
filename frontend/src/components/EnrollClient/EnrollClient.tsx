@@ -54,6 +54,7 @@ const EnrollClient = () => {
     }
     try {
       const res = await axiosInstance.post(`health/enroll/`, program);
+      navigate("/");
       console.log(res);
     } catch (error: any) {
       console.log(error);
@@ -66,6 +67,9 @@ const EnrollClient = () => {
             program_name: data.program_name,
             client_id: data.client_id,
           }));
+        } else if (data.non_field_errors) {
+          alert(data.non_field_errors);
+          navigate("/");
         }
       } else if (error.request) {
         alert("Check your network connection.");
@@ -126,7 +130,7 @@ const EnrollClient = () => {
             Program Name
           </label>
           <select
-            className="form-select p-3 fs-5"
+            className="form-select p-3 fs-5 text-capitalize"
             aria-label="program name"
             id="programName"
             name="program_name"

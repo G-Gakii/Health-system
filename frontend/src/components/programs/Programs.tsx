@@ -38,7 +38,7 @@ const Programs = () => {
             <th scope="col">Program Name</th>
             <th scope="col">Description</th>
             <th scope="col">Added on</th>
-            <th scope="col">Actions</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody className="fs-5 text-capitalize">
@@ -59,14 +59,14 @@ const Programs = () => {
                 <td>
                   {" "}
                   <button
-                    className={`btn text-capitalize fs-5 ${styles.table__button}`}
+                    className={` text-capitalize fs-5 ${styles.table__button}`}
                     onClick={() => {
                       setSelectedProgram(program.name);
                       navigate("/programs_clients");
                     }}
                   >
                     {" "}
-                    Enrolled Clients
+                    See Enrolled Clients
                   </button>{" "}
                 </td>
               </tr>

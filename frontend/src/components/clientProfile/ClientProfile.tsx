@@ -73,7 +73,7 @@ const ClientProfile = () => {
             ) : (
               client.programs.map((program) => (
                 <tr key={program.id}>
-                  <td className="text-uppercase"> {program.program} </td>
+                  <td className="text-capitalize"> {program.program} </td>
                   <td>
                     {" "}
                     {new Date(program.enrollment_date).toLocaleDateString(

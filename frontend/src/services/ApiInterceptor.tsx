@@ -23,12 +23,22 @@ axiosInstance.interceptors.request.use(
 // refresh token
 axiosInstance.interceptors.response.use(
   (response) => response,
+
   async (error) => {
+    if (
+      error.response.data.detail ===
+      "No active account found with the given credentials"
+    ) {
+      alert("Check your email and password and try to login again");
+      return;
+    }
+
     if (error.response?.status === 401) {
       const refreshToken = localStorage.getItem("refresh");
       if (!refreshToken) {
-        alert("Kindly re-login ");
+        alert("Kindly click sign in to log in ");
       }
+
       try {
         // try to refresh the token
         const res = await axios.post(`${baseUrl}user/refresh/`, {

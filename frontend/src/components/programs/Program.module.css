@@ -14,10 +14,11 @@ table {
   transition: 1s !important;
 }
 .table__button {
-  background-color: var(--DarkBlue);
-  color: var(--White) !important  ;
+  color: var(--LightBlue) !important  ;
+  border: none;
+  background-color: transparent;
 }
 .table__button:hover {
-  background-color: var(--LightBlue);
+  background-color: whitesmoke;
   transition: 1s;
 }

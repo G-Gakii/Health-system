@@ -34,6 +34,7 @@ const RegisterUser = () => {
     try {
       const res = await axiosInstance.post(`user/register/`, doctor);
       console.log(res);
+      navigate("/login");
     } catch (error: any) {
       console.log(error);
       if (error.response) {

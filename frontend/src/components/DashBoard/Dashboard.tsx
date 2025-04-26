@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BaseUrl from "../../services/ApiInterceptor";
+
 import styles from "./DashBoard.module.css";
 import ProgramInterface from "../../interfaces/ProgramInterface";
 import axios, { AxiosResponse } from "axios";
@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 import axiosInstance from "../../services/ApiInterceptor";
+import { EnrollmentInterface } from "../../interfaces/EnrollmentInterface";
 
 const Dashboard = () => {
   const [programsTotal, setProgramTotal] = useState(0);
   const [totalClient, setTotalClient] = useState(0);
+  const [recentErrollment, setRecentEnrollment] = useState(0);
   const navigate = useNavigate();
 
   const totalPrograms = async () => {
@@ -28,7 +30,28 @@ const Dashboard = () => {
   const totalClientFn = async () => {
     try {
       const res = await axiosInstance.get(`health/client`);
+
       setTotalClient(res.data.length);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const recentEnrollment = async () => {
+    try {
+      let res = await axiosInstance.get("health/enroll");
+      let enrollments: EnrollmentInterface[] = res.data;
+      let count = 0;
+      for (let enrollment of enrollments) {
+        let currentDate = new Date();
+        let originalDate = new Date(enrollment.enrollment_date);
+        let modifiedDate = new Date(enrollment.enrollment_date);
+        modifiedDate.setDate(originalDate.getDate() + 7);
+        if (modifiedDate > currentDate) {
+          count++;
+        }
+      }
+      setRecentEnrollment(count);
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +60,7 @@ const Dashboard = () => {
   useEffect(() => {
     totalPrograms();
     totalClientFn();
+    recentEnrollment();
   }, []);
   return (
     <>
@@ -114,7 +138,7 @@ const Dashboard = () => {
                       d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"
                     />
                   </svg>
-                  <p className="fs-1"> {0}</p>
+                  <p className="fs-1"> {recentErrollment}</p>
                   <p className="fs-4">Recent Enrollments</p>
                 </div>
               </div>

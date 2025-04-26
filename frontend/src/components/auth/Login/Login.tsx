@@ -26,18 +26,19 @@ const Login = () => {
       return;
     }
     try {
+      console.log("start");
+
       const res = await axiosInstance.post(`user/login/`, doctor);
+      console.log("start2");
       if (res.status === 200) {
         localStorage.setItem("access", res.data.access);
         localStorage.setItem("refresh", res.data.refresh);
-        console.log(res);
+
         navigate("/");
       } else {
         console.log("Login unsuccessful", res);
         alert("Invalid login credentials");
       }
-
-      console.log(res);
 
       navigate("/");
     } catch (error: any) {
@@ -56,8 +57,6 @@ const Login = () => {
         }
       } else if (error.request) {
         alert("Kindly check you internet connection");
-      } else {
-        alert("Something went wrong try again later");
       }
     }
   };

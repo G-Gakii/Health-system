@@ -78,7 +78,7 @@ const AddProgram = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label fs-5">
-            Description
+            Description <span>(Optional)</span>
           </label>
           <textarea
             className="form-control"
@@ -88,7 +88,6 @@ const AddProgram = () => {
             onChange={handleChange}
             value={program.description}
           ></textarea>
-          <p>(Optional)</p>
         </div>
         <div className="d-flex flex-column flex-sm-row gap-3 justify-content-between py-5">
           <button

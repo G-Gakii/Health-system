@@ -34,7 +34,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <a className="nav-link" href="/enroll_program">
-                Enroll_client
+                Enroll Client
               </a>
             </li>
             <li className="nav-item">
@@ -44,12 +44,12 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/login">
-                login
+                Sign In
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/register_doctor">
-                Get started
+                Register
               </a>
             </li>
           </ul>
