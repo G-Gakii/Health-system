@@ -1,5 +1,7 @@
 @import "../../variables.css";
-
+table {
+  max-width: 2000px;
+}
 .div__anchor {
   background-color: var(--DarkBlue) !important;
   padding: 1rem;
@@ -10,4 +12,12 @@
   color: var(--LightBlue) !important;
   text-decoration: underline !important;
   transition: 1s !important;
+}
+.table__button {
+  background-color: var(--DarkBlue);
+  color: var(--White) !important  ;
+}
+.table__button:hover {
+  background-color: var(--LightBlue);
+  transition: 1s;
 }

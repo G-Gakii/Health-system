@@ -8,6 +8,8 @@ import RegisteredClient from "./components/RegisteredClients/RegisteredClient";
 import { ClientProvider } from "./context/ClientContext";
 import ClientProfile from "./components/clientProfile/ClientProfile";
 import Programs from "./components/programs/Programs";
+import { ProgramProvider } from "./context/ProgramContext";
+import ClientsInProgram from "./components/programs/ClientsProgram";
 
 const App = () => {
   return (
@@ -17,7 +19,22 @@ const App = () => {
         <Route path="/create_program" element={<AddProgram />} />
         <Route path="/register_client" element={<RegisterClient />} />
         <Route path="/enroll_program" element={<EnrollClient />} />
-        <Route path="/programs" element={<Programs />} />
+        <Route
+          path="/programs"
+          element={
+            <ProgramProvider>
+              <Programs />
+            </ProgramProvider>
+          }
+        />
+        <Route
+          path="/programs_clients"
+          element={
+            <ProgramProvider>
+              <ClientsInProgram />
+            </ProgramProvider>
+          }
+        />
         <Route
           path="/registered_client"
           element={

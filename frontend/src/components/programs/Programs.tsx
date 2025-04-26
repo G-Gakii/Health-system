@@ -5,9 +5,13 @@ import axios, { AxiosResponse } from "axios";
 import BaseUrl from "../../services/ApiInterceptor";
 import ProgramInterface from "../../interfaces/ProgramInterface";
 import styles from "./Program.module.css";
+import { useProgramContext } from "../../context/ProgramContext";
+import { useNavigate } from "react-router-dom";
 
 const Programs = () => {
   const [programs, setPrograms] = useState<ProgramInterface[]>([]);
+  const { setSelectedProgram } = useProgramContext();
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchPrograms() {
       try {
@@ -51,9 +55,15 @@ const Programs = () => {
                 </td>
                 <td>
                   {" "}
-                  <button className="btn text-capitalize fs-5">
+                  <button
+                    className={`btn text-capitalize fs-5 ${styles.table__button}`}
+                    onClick={() => {
+                      setSelectedProgram(program.name);
+                      navigate("/programs_clients");
+                    }}
+                  >
                     {" "}
-                    view Enrolled Clients
+                    Enrolled Clients
                   </button>{" "}
                 </td>
               </tr>

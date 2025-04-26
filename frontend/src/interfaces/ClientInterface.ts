@@ -2,6 +2,7 @@ export interface ProgramsInterface {
   id: string;
   enrollment_date: string;
   program: string;
+  client?: string;
 }
 
 export default interface ClientInterface {
