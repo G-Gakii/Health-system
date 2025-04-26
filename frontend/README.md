@@ -16,78 +16,23 @@ This is the frontend of the Health Program Management System, built using ReactI
 - State Management: React Context API
 - Authentication: JWT (JSON Web Tokens)
 - Boostrap
-- Backend API: Django REST Framework ()
+- Backend API: Django REST Framework
 
 ## Prerequisites
 
 - Node.js and npm (Node Package Manager) installed on your local machine.
-- Access to the backend API (ensure it's running locally ).
+- Access to the backend API (ensure it's running locally ).Backend step by step set up : https://github.com/G-Gakii/Health-system/blob/main/backend/README.md
 
 ## Installation
 
 1. git clone `https://github.com/G-Gakii/Health-system.git`
 2. Navigate to the project directory: `cd Health-system`
-3. Navigate to backend : `cd frontend`
+3. Navigate to frontend : `cd frontend`
+4. npm install
+5. Set up the API URL for the backend
 
-bash
-Copy
-Edit
-npm install
-Set up the API URL for the backend:
+- Create a .env file in the root of the frontend project.Add the following entry to point to your backend:
+  `REACT_APP_API_URL="Backend API URL"`
 
-Create a .env file in the root of the frontend project.
-
-Add the following entry to point to your backend:
-
-bash
-Copy
-Edit
-REACT_APP_API_URL=http://127.0.0.1:8000/api
-Start the development server:
-
-bash
-Copy
-Edit
-npm start
-The frontend will be available at:
-
-arduino
-Copy
-Edit
-http://localhost:3000
-Frontend Structure
-Directory Structure
-src/
-
-components/ - Reusable React components (buttons, form inputs, etc.)
-
-pages/ - Contains different pages (e.g., Home, Login, Health Programs, Client Profile, etc.)
-
-services/ - Contains functions for interacting with the API (e.g., login, register, CRUD operations for clients and health programs).
-
-redux/ - (If using Redux) Contains state management and actions for authentication and health programs.
-
-utils/ - Helper functions and utilities (e.g., JWT token handling, API request setup).
-
-Authentication
-Login
-Login Page allows users to log in by sending their credentials (username and password) to the backend API.
-
-JWT Token is stored in the localStorage or cookies to manage authentication.
-
-Example Login Request:
-
-Endpoint: /api/user/login/
-
-Method: POST
-
-Request Body:
-
-json
-Copy
-Edit
-{
-"username": "admin",
-"password": "password123"
-}
-After successful login, store the JWT token and use it in the Authorization header for subsequent requests.
+6. Start the development server:`npm run dev`
+   The frontend will be available at:`http://localhost:3000`
