@@ -3,8 +3,7 @@ import Navbar from "../../Navbar/Navbar";
 import { DoctorInterface } from "../../../interfaces/DoctorInterface";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterUser.module.css";
-import axios from "axios";
-import BaseUrl from "../../../services/ApiInterceptor";
+
 import axiosInstance from "../../../services/ApiInterceptor";
 
 const RegisterUser = () => {
@@ -143,7 +142,7 @@ const RegisterUser = () => {
             className="form-control p-3"
             id="email"
             name="email"
-            placeholder="e.g 30"
+            placeholder="e.g jane@example.com"
             value={doctor.email}
             onChange={handleChange}
             onFocus={handleFocus}

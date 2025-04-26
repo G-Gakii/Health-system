@@ -104,7 +104,7 @@ const Login = () => {
             className="form-control p-3"
             id="email"
             name="email"
-            placeholder="e.g 30"
+            placeholder="e.g jane@example.com"
             value={doctor.email}
             onChange={handleChange}
             onFocus={handleFocus}
