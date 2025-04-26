@@ -5,7 +5,8 @@ import ProgramInterface from "../../interfaces/ProgramInterface";
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+
+import axiosInstance from "../../services/ApiInterceptor";
 
 const Dashboard = () => {
   const [programsTotal, setProgramTotal] = useState(0);
@@ -14,8 +15,8 @@ const Dashboard = () => {
 
   const totalPrograms = async () => {
     try {
-      const res: AxiosResponse<ProgramInterface[]> = await axios.get(
-        `${BaseUrl}program/`
+      const res: AxiosResponse<ProgramInterface[]> = await axiosInstance.get(
+        `health/program/`
       );
 
       setProgramTotal(res.data.length);
@@ -26,7 +27,7 @@ const Dashboard = () => {
   };
   const totalClientFn = async () => {
     try {
-      const res = await axios.get(`${BaseUrl}client`);
+      const res = await axiosInstance.get(`health/client`);
       setTotalClient(res.data.length);
     } catch (error) {
       console.log(error);

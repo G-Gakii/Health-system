@@ -5,6 +5,7 @@ import BaseUrl from "../../services/ApiInterceptor";
 import { ProgramsInterface } from "../../interfaces/ClientInterface";
 import Navbar from "../Navbar/Navbar";
 import styles from "./ClientProgram.module.css";
+import axiosInstance from "../../services/ApiInterceptor";
 
 const ClientsInProgram = () => {
   const { selectedProgram } = useProgramContext();
@@ -12,8 +13,8 @@ const ClientsInProgram = () => {
   useEffect(() => {
     const fetchClientInProgram = async () => {
       try {
-        const res = await axios.get(
-          `${BaseUrl}enroll?search=${selectedProgram}`
+        const res = await axiosInstance.get(
+          `health/enroll?search=${selectedProgram}`
         );
         console.log(res.data);
 

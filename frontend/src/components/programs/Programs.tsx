@@ -7,6 +7,7 @@ import ProgramInterface from "../../interfaces/ProgramInterface";
 import styles from "./Program.module.css";
 import { useProgramContext } from "../../context/ProgramContext";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../services/ApiInterceptor";
 
 const Programs = () => {
   const [programs, setPrograms] = useState<ProgramInterface[]>([]);
@@ -15,8 +16,8 @@ const Programs = () => {
   useEffect(() => {
     async function fetchPrograms() {
       try {
-        const res: AxiosResponse<ProgramInterface[]> = await axios.get(
-          `${BaseUrl}program/`
+        const res: AxiosResponse<ProgramInterface[]> = await axiosInstance.get(
+          `health/program/`
         );
         setPrograms(res.data);
       } catch (error) {
@@ -36,6 +37,7 @@ const Programs = () => {
           <tr className="fs-3">
             <th scope="col">Program Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Added on</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -53,6 +55,7 @@ const Programs = () => {
                     program.description
                   )}
                 </td>
+                <td> {new Date(program.created_at).toLocaleDateString()}</td>
                 <td>
                   {" "}
                   <button

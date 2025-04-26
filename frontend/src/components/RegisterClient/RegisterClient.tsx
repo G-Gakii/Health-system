@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./RegisterClient.module.css";
 import React, { useState } from "react";
 import RegisterInterface from "../../interfaces/RegisterInterface";
-import axios from "axios";
-import BaseUrl from "../../services/ApiInterceptor";
+
 import Navbar from "../Navbar/Navbar";
+import axiosInstance from "../../services/ApiInterceptor";
 
 const RegisterClient = () => {
   const navigate = useNavigate();
@@ -41,9 +41,11 @@ const RegisterClient = () => {
       return;
     }
     try {
-      const res = await axios.post(`${BaseUrl}client/`, client);
+      const res = await axiosInstance.post(`health/client/`, client);
+      console.log(res);
+
       // after successful login navigate to homepage
-      navigate("/");
+      navigate("/registered_client");
     } catch (error: any) {
       console.log(error.response.data);
 
@@ -89,7 +91,7 @@ const RegisterClient = () => {
   const handleFocus = (
     e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
     setFormError((prev) => {
       let updatedError: any = { ...prev };
       delete updatedError[name];

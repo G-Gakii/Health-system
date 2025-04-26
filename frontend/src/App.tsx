@@ -10,12 +10,16 @@ import ClientProfile from "./components/clientProfile/ClientProfile";
 import Programs from "./components/programs/Programs";
 import { ProgramProvider } from "./context/ProgramContext";
 import ClientsInProgram from "./components/programs/ClientsProgram";
+import RegisterUser from "./components/auth/RegisterUser/RegisterUser";
+import Login from "./components/auth/Login/Login";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/register_doctor" element={<RegisterUser />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/create_program" element={<AddProgram />} />
         <Route path="/register_client" element={<RegisterClient />} />
         <Route path="/enroll_program" element={<EnrollClient />} />

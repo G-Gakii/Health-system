@@ -1,11 +1,10 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import BaseUrl from "../../services/ApiInterceptor";
+import { useEffect, useState } from "react";
 import ClientInterface from "../../interfaces/ClientInterface";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
 import { useClientContext } from "../../context/ClientContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../services/ApiInterceptor";
+import styles from "./RegisteredClient.module.css";
 
 const RegisteredClient = () => {
   const [clients, setClients] = useState<ClientInterface[]>([]);
@@ -16,7 +15,7 @@ const RegisteredClient = () => {
   // get all clients
   const listClients = async () => {
     try {
-      const res = await axios.get(`${BaseUrl}client`);
+      const res = await axiosInstance.get(`health/client/`);
       console.log(res.data);
       setClients(res.data);
     } catch (error) {
@@ -31,7 +30,7 @@ const RegisteredClient = () => {
     const { value } = e.target;
     setSearchValue(value);
     try {
-      const res = await axios.get(`${BaseUrl}client?search=${value}`);
+      const res = await axiosInstance.get(`health/client?search=${value}`);
       console.log(res);
       setClients(res.data);
     } catch (error) {
@@ -41,18 +40,27 @@ const RegisteredClient = () => {
   return (
     <>
       <Navbar />
-      <form className="d-flex " role="search">
-        <input
-          className="form-control me-2 p-3"
-          type="search"
-          placeholder="Search by client id or name"
-          name="searchValue"
-          value={searchValue}
-          aria-label="Search"
-          onChange={handleChange}
-        />
-      </form>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+        <div className="d-flex justify-content-between align-items-center">
+          <form className="d-flex " style={{ width: "80%" }} role="search">
+            <input
+              className="form-control me-2 p-3"
+              type="search"
+              placeholder="Search by client id or name"
+              name="searchValue"
+              value={searchValue}
+              aria-label="Search"
+              onChange={handleChange}
+            />
+          </form>
+          <a
+            className={`btn  p-2 px-3 ${styles.button}`}
+            href="register_client"
+          >
+            Register Client
+          </a>
+        </div>
+
         <h1 className="text-center py-3">Registered Clients</h1>
         <table className="table m-5 ">
           <thead className="fs-4">
@@ -60,6 +68,7 @@ const RegisteredClient = () => {
               <th scope="col">Client ID</th>
               <th scope="col">Name</th>
               <th scope="col">Age</th>
+              <th scope="col">Registered_on</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -72,6 +81,12 @@ const RegisteredClient = () => {
                   <th scope="row"> {client.client_id} </th>
                   <td> {client.fullName} </td>
                   <td> {client.age} </td>
+                  <td>
+                    {" "}
+                    {new Date(
+                      client.registration_date
+                    ).toLocaleDateString()}{" "}
+                  </td>
                   <td>
                     <button
                       onClick={() => {

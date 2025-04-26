@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EnrollInterface } from "../../interfaces/RegisterInterface";
-import axios from "axios";
-import BaseUrl from "../../services/ApiInterceptor";
+
 import styles from "./EnrollClient.module.css";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+
+import axiosInstance from "../../services/ApiInterceptor";
 
 const EnrollClient = () => {
   const navigate = useNavigate();
@@ -23,7 +23,8 @@ const EnrollClient = () => {
   useEffect(() => {
     const fetchAllPrograms = async () => {
       try {
-        const response: any = await axios.get(`${BaseUrl}program/`);
+        const response: any = await axiosInstance.get(`health/program/`);
+        console.log("res", response);
 
         const programs: string[] = [];
         for (let res of response.data) {
@@ -52,7 +53,7 @@ const EnrollClient = () => {
       return;
     }
     try {
-      const res = await axios.post(`${BaseUrl}enroll/`, program);
+      const res = await axiosInstance.post(`health/enroll/`, program);
       console.log(res);
     } catch (error: any) {
       console.log(error);

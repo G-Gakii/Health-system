@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./AddProgram.module.css";
 import React, { useState } from "react";
-import axios from "axios";
-import BaseUrl from "../../services/ApiInterceptor";
+
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
+import axiosInstance from "../../services/ApiInterceptor";
 
 const AddProgram = () => {
   type formErrorType = {
@@ -31,8 +30,8 @@ const AddProgram = () => {
       return;
     }
     try {
-      const res = await axios.post(`${BaseUrl}program/`, program);
-      navigate("/");
+      const res = await axiosInstance.post(`health/program/`, program);
+      navigate("/programs");
     } catch (error) {
       console.log(error);
     }

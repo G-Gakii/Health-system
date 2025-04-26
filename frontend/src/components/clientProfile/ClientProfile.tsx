@@ -4,6 +4,7 @@ import BaseUrl from "../../services/ApiInterceptor";
 import axios from "axios";
 import ClientInterface from "../../interfaces/ClientInterface";
 import Navbar from "../Navbar/Navbar";
+import axiosInstance from "../../services/ApiInterceptor";
 
 const ClientProfile = () => {
   const { selectedClientId } = useClientContext();
@@ -27,7 +28,9 @@ const ClientProfile = () => {
   useEffect(() => {
     async function fetchClient() {
       try {
-        const res = await axios.get(`${BaseUrl}client/${selectedClientId}`);
+        const res = await axiosInstance.get(
+          `health/client/${selectedClientId}`
+        );
         setClient(res.data);
       } catch (error) {
         console.log(error);
