@@ -47,7 +47,7 @@ class ClientDetails(generics.RetrieveUpdateDestroyAPIView):
 
 # Handles listing and creating enrollments    
 class EnrollmentList(generics.ListCreateAPIView):
-    permission_classes=IsAuthenticatedOrReadOnly
+    permission_classes=[IsAuthenticatedOrReadOnly]
     queryset=Enrollment.objects.all()
     serializer_class=EnrollmentSerializer
     filter_backends = [filters.SearchFilter]
@@ -58,7 +58,7 @@ class EnrollmentList(generics.ListCreateAPIView):
     
 # Handles retrieving, updating, or deleting a single enrollment    
 class EnrollmentDetails(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes=IsAuthenticatedOrReadOnly
+    permission_classes=[IsAuthenticated]
     queryset=Enrollment.objects.all()
     serializer_class=EnrollmentSerializer
     

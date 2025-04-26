@@ -24,6 +24,9 @@ class HealthProgram(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.lower()  # Convert to lowercase before saving
         super().save(*args, **kwargs)
+        
+    class Meta:
+        ordering = ['-created_at']
 
     
     
@@ -42,6 +45,9 @@ class Client(models.Model):
     
     def __str__(self):
         return self.fullName
+    
+    class Meta:
+        ordering = ['-registration_date']
     
 class Enrollment(models.Model):
     id=models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
