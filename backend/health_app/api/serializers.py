@@ -71,7 +71,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     )
          enrollment.save()
          return enrollment
-         return Enrollment.objects.create( program=program,client=client)
+        #  return Enrollment.objects.create( program=program,client=client)
      
      def update(self, instance, validated_data):
         client = Client.objects.get(client_id=validated_data['client_id'])
