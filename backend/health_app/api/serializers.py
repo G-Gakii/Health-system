@@ -4,9 +4,11 @@ from rest_framework import status
 
 
 class HealthProgramSerializer(serializers.ModelSerializer):
+    doctor=serializers.StringRelatedField(read_only=True)
     class Meta:
         model=HealthProgram
         fields='__all__'
+        read_only_fields = ['doctor']
         
         
 
@@ -21,11 +23,13 @@ class EnrollmentSerializer(serializers.ModelSerializer):
       # These are for readable output
      client = serializers.StringRelatedField(read_only=True)
      program = serializers.StringRelatedField(read_only=True)
+     doctor=serializers.StringRelatedField(read_only=True)
 
      class Meta:
         model=Enrollment
         fields=["id" ,'client_id', 'program_name', 'enrollment_date',
             'client', 'program']
+        read_only_fields = ['doctor']
         
         #check if client is already registered for the program
      def validate(self,data):
@@ -67,8 +71,10 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         return instance
     
 class ClientSerializer(serializers.ModelSerializer):
+    doctor=serializers.StringRelatedField(read_only=True)
       # Nested serializer for enrolled programs
     programs=EnrollmentSerializer(many=True,read_only=True)
     class Meta:
         model=Client
         fields= ['client_id', 'fullName', 'age', 'phone_number', 'gender', 'registration_date', 'updated_at', 'programs']
+        read_only_fields = ['doctor']
