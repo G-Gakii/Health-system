@@ -31,6 +31,8 @@ class ClientDetails(generics.RetrieveUpdateDestroyAPIView):
 class EnrollmentList(generics.ListCreateAPIView):
     queryset=Enrollment.objects.all()
     serializer_class=EnrollmentSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['program__name']
     
 # Handles retrieving, updating, or deleting a single enrollment    
 class EnrollmentDetails(generics.RetrieveUpdateDestroyAPIView):
