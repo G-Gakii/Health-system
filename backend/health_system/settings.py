@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
      'django_filters',
-    'health_app'
+    'health_app',
+    'user',
+    'rest_framework_simplejwt',
+    
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,17 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", 
 
 ]
+AUTH_USER_MODEL="user.User"
+
+REST_FRAMEWORK = {
+  
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+    
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+  
+}
+# JWT Custom Config
+SIMPLE_JWT = {
+    "USER_ID_FIELD": "doctor_id",
+}
