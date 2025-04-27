@@ -3,9 +3,8 @@ import Navbar from "../../Navbar/Navbar";
 import { DoctorInterface } from "../../../interfaces/DoctorInterface";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
-import axios from "axios";
-import baseUrl from "../../../services/ApiInterceptor";
-import axiosInstance from "../../../services/ApiInterceptor";
+
+import { axiosNoInterceptors } from "../../../services/ApiInterceptor";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ const Login = () => {
     try {
       console.log("start");
 
-      const res = await axiosInstance.post(`user/login/`, doctor);
+      const res = await axiosNoInterceptors.post(`user/login/`, doctor);
       console.log("start2");
       if (res.status === 200) {
         localStorage.setItem("access", res.data.access);

@@ -3,7 +3,7 @@ import ClientInterface from "../../interfaces/ClientInterface";
 import Navbar from "../Navbar/Navbar";
 import { useClientContext } from "../../context/ClientContext";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../services/ApiInterceptor";
+import { axiosNoInterceptors } from "../../services/ApiInterceptor";
 import styles from "./RegisteredClient.module.css";
 
 const RegisteredClient = () => {
@@ -15,7 +15,7 @@ const RegisteredClient = () => {
   // get all clients
   const listClients = async () => {
     try {
-      const res = await axiosInstance.get(`health/client/`);
+      const res = await axiosNoInterceptors.get(`health/client/`);
       console.log(res.data);
       setClients(res.data);
     } catch (error) {
@@ -30,7 +30,9 @@ const RegisteredClient = () => {
     const { value } = e.target;
     setSearchValue(value);
     try {
-      const res = await axiosInstance.get(`health/client?search=${value}`);
+      const res = await axiosNoInterceptors.get(
+        `health/client?search=${value}`
+      );
       console.log(res);
       setClients(res.data);
     } catch (error) {

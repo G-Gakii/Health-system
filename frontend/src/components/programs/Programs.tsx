@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 
-import axios, { AxiosResponse } from "axios";
-import BaseUrl from "../../services/ApiInterceptor";
+import { AxiosResponse } from "axios";
+import { axiosNoInterceptors } from "../../services/ApiInterceptor";
 import ProgramInterface from "../../interfaces/ProgramInterface";
 import styles from "./Program.module.css";
 import { useProgramContext } from "../../context/ProgramContext";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../services/ApiInterceptor";
 
 const Programs = () => {
   const [programs, setPrograms] = useState<ProgramInterface[]>([]);
@@ -16,9 +15,8 @@ const Programs = () => {
   useEffect(() => {
     async function fetchPrograms() {
       try {
-        const res: AxiosResponse<ProgramInterface[]> = await axiosInstance.get(
-          `health/program/`
-        );
+        const res: AxiosResponse<ProgramInterface[]> =
+          await axiosNoInterceptors.get(`health/program/`);
         setPrograms(res.data);
       } catch (error) {
         console.log(error);

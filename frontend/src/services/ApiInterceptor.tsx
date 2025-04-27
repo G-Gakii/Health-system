@@ -25,23 +25,17 @@ axiosInstance.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    if (
-      error.response.data.detail ===
-      "No active account found with the given credentials"
-    ) {
-      alert("Check your email and password and try to login again");
-      return;
-    }
-
     if (error.response?.status === 401) {
       const refreshToken = localStorage.getItem("refresh");
       if (!refreshToken) {
-        alert("Kindly click sign in to log in ");
+        alert("Kindly login to continue ");
+        window.location.href = "/login";
+        return Promise.reject(error);
       }
 
       try {
         // try to refresh the token
-        const res = await axios.post(`${baseUrl}user/refresh/`, {
+        const res = await axiosNoInterceptors.post(`user/refresh/`, {
           refresh: refreshToken,
         });
         localStorage.setItem("access", res.data.access);
@@ -52,9 +46,17 @@ axiosInstance.interceptors.response.use(
 
         // Retry the original request with new token
         return axiosInstance(originalRequest);
-      } catch (error) {
-        console.error("Token refresh failed, user must re-login.");
-        return Promise.reject(error);
+      } catch (refreshError: any) {
+        if (
+          refreshError.response?.data?.code === "token_not_valid" ||
+          refreshError.response?.status === 401
+        ) {
+          localStorage.removeItem("access");
+          localStorage.removeItem("refresh");
+          alert("Session expired, kindly log in again.");
+          window.location.href = "/login";
+        }
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);
@@ -62,3 +64,7 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+
+export const axiosNoInterceptors = axios.create({
+  baseURL: baseUrl,
+});

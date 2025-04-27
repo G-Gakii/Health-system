@@ -6,7 +6,9 @@ import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
-import axiosInstance from "../../services/ApiInterceptor";
+import axiosInstance, {
+  axiosNoInterceptors,
+} from "../../services/ApiInterceptor";
 import { EnrollmentInterface } from "../../interfaces/EnrollmentInterface";
 
 const Dashboard = () => {
@@ -17,9 +19,8 @@ const Dashboard = () => {
 
   const totalPrograms = async () => {
     try {
-      const res: AxiosResponse<ProgramInterface[]> = await axiosInstance.get(
-        `health/program/`
-      );
+      const res: AxiosResponse<ProgramInterface[]> =
+        await axiosNoInterceptors.get(`health/program/`);
 
       setProgramTotal(res.data.length);
       console.log(programsTotal);
@@ -29,7 +30,7 @@ const Dashboard = () => {
   };
   const totalClientFn = async () => {
     try {
-      const res = await axiosInstance.get(`health/client`);
+      const res = await axiosNoInterceptors.get(`health/client`);
 
       setTotalClient(res.data.length);
     } catch (error) {
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
   const recentEnrollment = async () => {
     try {
-      let res = await axiosInstance.get("health/enroll");
+      let res = await axiosNoInterceptors.get("health/enroll");
       let enrollments: EnrollmentInterface[] = res.data;
       let count = 0;
       for (let enrollment of enrollments) {

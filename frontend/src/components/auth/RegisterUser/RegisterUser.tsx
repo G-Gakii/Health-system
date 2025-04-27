@@ -4,7 +4,9 @@ import { DoctorInterface } from "../../../interfaces/DoctorInterface";
 import { useNavigate } from "react-router-dom";
 import styles from "./RegisterUser.module.css";
 
-import axiosInstance from "../../../services/ApiInterceptor";
+import axiosInstance, {
+  axiosNoInterceptors,
+} from "../../../services/ApiInterceptor";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const RegisterUser = () => {
       return;
     }
     try {
-      const res = await axiosInstance.post(`user/register/`, doctor);
+      const res = await axiosNoInterceptors.post(`user/register/`, doctor);
       console.log(res);
       navigate("/login");
     } catch (error: any) {
