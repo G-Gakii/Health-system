@@ -1,4 +1,4 @@
-# Health Program Management API
+# HealthConnect
 
 This is a RESTful API built with Django and Django REST Framework (DRF) to manage health programs, clients, and their enrollments. The system also includes secure user registration and authentication using JWT via djangorestframework-simplejwt
 
