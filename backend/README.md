@@ -60,7 +60,7 @@ This is a RESTful API built with Django and Django REST Framework (DRF) to manag
 - `PATCH /api/health/program/<uuid:pk>` : Partially update a specific health program
 - `DELETE/api/health/program/<uuid:pk>` : Delete a specific health program (Authenticated users only)
 
-- Search clients by full name or client ID.
+- `GET /api/health/enroll?search=(name/id) ` : Search clients by full name or client ID
 
 #### Clients
 
@@ -79,8 +79,6 @@ This is a RESTful API built with Django and Django REST Framework (DRF) to manag
 - `PUT    /api/health/enroll/<uuid:pk> ` : Update a specific enrollment (Authenticated users only)
 - `PATCH  /api/health/enroll/<uuid:pk> ` : Partially update a specific enrollment
 - `DELETE /api/health/enroll/<uuid:pk>` : Delete a specific enrollment (Authenticated users only)
-
-- Validate that a client is not enrolled twice into the same program.
 
 # Notes
 
