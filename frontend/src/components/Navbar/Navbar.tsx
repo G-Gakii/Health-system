@@ -4,7 +4,9 @@ const Navbar = () => {
   return (
     <nav className={`navbar navbar-expand-lg   ${styles.navContainer}`}>
       <div className="container-fluid ">
-        <h1 className="navbar-brand fs-1 text-light">Health</h1>
+        <h1 className={`navbar-brand fs-1 text-light ${styles.navbar__h1}`}>
+          HealthConnect
+        </h1>
         <button
           className="navbar-toggler"
           type="button"
