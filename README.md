@@ -5,4 +5,4 @@ The HealthConnect app is a health information system designed to help doctors ma
 - Backend :https://github.com/G-Gakii/Health-system/tree/main/backend
 - frontend: https://github.com/G-Gakii/Health-system/tree/main/frontend
 - presentation: https://docs.google.com/presentation/d/1SZ1OWMlXf99aiM2k5gDV2mxaBSBJiXvZY2aELx19Sjo/edit#slide=id.p
-- Prototype:https://youtu.be/px_BA1D2F8E
+- Prototype:https://youtu.be/Wwn2qBif5m8
