@@ -1,6 +1,6 @@
-# Health Program Management System
+# HealthConnect
 
-This is the frontend of the Health Program Management System, built using ReactIt interacts with the backend API to manage health programs, clients, and enrollments, and allows authenticated users (doctors) to perform actions like creating health programs, enrolling clients, and viewing client profiles.
+HealthConnect built using ReactIt interacts with the backend API to manage health programs, clients, and enrollments, and allows authenticated users (doctors) to perform actions like creating health programs, enrolling clients, and viewing client profiles.
 
 ## Features
 
@@ -15,7 +15,7 @@ This is the frontend of the Health Program Management System, built using ReactI
 - Frontend: React.js
 - State Management: React Context API
 - Authentication: JWT (JSON Web Tokens)
-- Boostrap
+- Bootstrap
 - Backend API: Django REST Framework
 
 ## Prerequisites
